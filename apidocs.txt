@@ -1,0 +1,64 @@
+Base URL: http://localhost:8000/api/
+
+         Endpoints                        Description                  Method
+------------------------------------------------------------------------------------
+        story/                  |   List all New Stories from DB     |  GET 
+        job/                    |   List all job stories from DB     |  GET 
+        asks/                   |   List all ask category stories    |  GET 
+        story/id/               |   Filter new stories by ID         |  GET 
+        job-details/id/         |   Filter job stories by ID         |  GET 
+        ask-details/id/         |   Filter ask category stories by ID|  GET 
+        addstory/               |   Add story to new stories category|  POST
+        addjob/                 |   Add jobs to job category         |  POST 
+        addask/                 |   Add ask stories to add category  |  POST 
+        updatestory/id/         | Update New Stories Category        |  PUT
+        updatejob/id/           | Update Job Category                |  PUT 
+        updateask/id/           |Update Ask category stories         |  PUT 
+        deletestory/id/         |Delete New Story by ID              |  DELETE 
+        deletejob/id/           |Delete job Story by ID              |  DELETE 
+        deleteask/id/           |Delete Ask Story by ID              |  DELETE
+
+NB: Stories fetched with "source":"Hackernews" cannot be updated or deleted
+
+Response Pay Load
+-----------------
+{
+	"status": status.HTTP_201_CREATED,
+	"data": [],
+}
+
+
+Request Pay load
+------------------
+*Request Payload for api/story/
+{
+    "by": "hakan", *Required
+    "storyid": "209118", *Required
+    "score": "3", *Required
+    "title": "I generated over a thousand supermodel images with SD. Here's what I found", *Required
+    "type": "story",
+    "url": "https://github.com/Prosperibe12",  *Required
+    "source": "User"  *Required
+}
+
+*Request Payload for api/job/
+{
+    "by": "jobgurus",  *Required
+    "jobIds": "1036118",  *Required
+    "score": "1",  *Required
+    "title": "We are looking for a Senior DevOps Engineer to manage the Company’s technology and software development functions.",
+    "type": "job",  *Required
+    "url": "https://www.jobgurus.com.ng/jobs/view/senior-devops-engineer-job-at-vogue-web-solution-limited",  *Required
+    "source": "User"  *Required
+}
+
+*Request Payload for api/ask/
+{
+    "by": "ifeatu", *Required
+    "askId": "103926", *Required
+    "score": "1",  *Required
+    "text": "I am not implying merely reading a book will make you a problem solver. Problem solving will make you good at problem solving.Have you come across any book that helped you become good at problem solving?",  *Required
+    "title": "Ask HN: Can math books help you become good at problem solving in general?", *Required
+    "type": "story", *Required
+    "source": "User" *Required
+}

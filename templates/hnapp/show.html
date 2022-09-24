@@ -1,0 +1,100 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}
+    {{Title}}
+{% endblock title %}
+{% block navtab %}
+    <div class="container mt-3">
+        <ul class="nav nav-tabs justify-content-end">
+            <li class="nav-item">
+                <a class="nav-link" aria-current="page" href="{% url 'index' %}">Newest</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-dark active" href="{% url 'show' %}">Show</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-dark" href="{% url 'jobs' %}">Jobs</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-dark" href="{% url 'ask' %}">Ask</a>
+            </li>
+        </ul>
+    </div>
+{% endblock navtab %}
+{% block container %}
+    <div class="container my-2">
+        <div class="row justify-content-center">
+           {% if paginator %}
+                {% for story in paginator %}
+                <div class="col-md-10 my-2">
+                    <div class="card">
+                        <div class="card-header">
+                        {{story.type}}
+                        </div>
+                        <div class="card-body">
+                        <blockquote class="blockquote mb-0">
+                            <p>{{story.title}}  <a href="{{story.url}}" class="text-dark">link</a></p>
+                            
+                            <footer class="blockquote-footer">story by <cite title="Source Title">{{story.by}}</cite></footer>
+                        </blockquote>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+           {% else %}
+            <div class="col-md-10 my-2">
+                <div class="card">
+                    <div class="card-header">
+                    Quote
+                    </div>
+                    <div class="card-body">
+                    <blockquote class="blockquote mb-0">
+                        <p>Our API has not fetched any stories yet, please check back later.</p>
+                        <footer class="blockquote-footer">Someone famous in <cite title="Source Title">Author</cite></footer>
+                    </blockquote>
+                    </div>
+                </div>
+            </div>
+           {% endif %}
+           <!-- page -->
+           <div class="col-md-6 mx-auto my-2">
+                <nav aria-label="Page navigation example">
+                    <ul class="pagination">
+                        {% if paginator.has_previous %}
+                            <li class="page-item">
+                                <a class="page-link"  href="?page={{ paginator.previous_page_number }}">Previous</a>
+                            </li>
+                        {% else %}
+                            <li class="page-item disabled">
+                                <a href="#" class="page-link">Previous</a>
+                            </li>
+                        {% endif %}
+                        
+                        {% for i in paginator.paginator.page_range %}
+                        {% if i == paginator.number %}
+                            <li class="page-item active">
+                                <a class="page-link">{{i}}</a>
+                            </li>
+                        {% else %}
+                            <li class="page-item">
+                                <a class="page-link" href="?page={{i}}">{{i}}</a>
+                            </li>
+                        {% endif %}
+                        {% endfor %}
+
+                        {% if paginator.has_next %}
+                            <li class="page-item">
+                                <a class="page-link"  href="?page={{ paginator.next_page_number }}">Next</a>
+                            </li>
+                        {% else %}
+                            <li class="page-item disabled">
+                                <a href="#" class="page-link">Next</a>
+                            </li>
+                        {% endif %}                     
+                    </ul>
+                </nav>
+            </div>
+            <!-- page -->
+        </div>
+    </div>
+{% endblock container %}

@@ -1,0 +1,7 @@
+body{
+    background-color: #EDF2F4;
+}
+.btn:focus, .form-control:focus{
+    outline: none !important;
+    box-shadow: none !important;
+}

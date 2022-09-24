@@ -1,0 +1,24 @@
+{% load static %}
+<nav class="navbar navbar-expand-lg" style="background-color: #EDEDE9;">
+    <div class="container">
+        <a class="navbar-brand fw-bold" href="">
+            <img src="{% static 'img/y18.gif' %}" alt="" width="30" height="24" class="d-inline-block align-text-top">
+            HackerNews
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+
+            </ul>
+            <form class="d-flex" role="search">
+                <input class="form-control me-2 px-5" name="q" type="search" placeholder="Search Jobs, Shows, Ask" aria-label="Search">
+                <button class="btn" type="">Search</button>
+            </form>
+        </div>
+    </div>
+</nav>
+{% block navs %}
+
+{% endblock navs %}

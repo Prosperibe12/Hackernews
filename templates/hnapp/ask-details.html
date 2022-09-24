@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}
+    {{Title}}
+{% endblock title %}
+{% block navtab %}
+    <div class="container mt-3">
+        <ul class="nav nav-tabs justify-content-end">
+            <li class="nav-item">
+                <a class="nav-link text-dark" aria-current="page" href="{% url 'index' %}">Newest</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-dark" href="{% url 'show' %}">Show</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-dark" href="{%url 'jobs' %}">Jobs</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-dark active" href="{% url 'ask' %}">Ask</a>
+            </li>
+        </ul>
+    </div>
+{% endblock navtab %}
+{% block container %}
+    <div class="container my-2">
+        <div class="row justify-content-center">
+            {% if story %}
+                <div class="col-md-10 my-2">
+                    <div class="card">
+                        <div class="card-header">
+                        {{story.type}}
+                        </div>
+                        <div class="card-body">
+                        <blockquote class="blockquote mb-0">
+                            <p>{{story.title}}</p>
+                            <p class="lead">{{story.text}} <a href="{% url 'ask' %}" class="text-dark">back</a></p>                            
+                            <footer class="blockquote-footer">story by <cite title="Source Title">{{story.by}}</cite></footer>
+                        </blockquote>
+                        </div>
+                    </div>
+                </div>
+            {% else %}
+            <div class="col-md-10 my-2">
+                <div class="card">
+                    <div class="card-header">
+                    Quote
+                    </div>
+                    <div class="card-body">
+                    <blockquote class="blockquote mb-0">
+                        <p>Our API has not fetched any stories yet, please check back later.</p>
+                        <footer class="blockquote-footer">Someone famous in <cite title="Source Title">Author</cite></footer>
+                    </blockquote>
+                    </div>
+                </div>
+            </div>
+           {% endif %}
+        </div>
+    </div>
+{% endblock container %}
